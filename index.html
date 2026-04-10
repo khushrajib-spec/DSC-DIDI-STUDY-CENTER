@@ -1408,8 +1408,34 @@ document.getElementById("admissionForm").addEventListener("submit", function(e){
 });
  
 function downloadReceipt() {
-  alert("Receipt download feature coming soon!");
+  let name = document.getElementById("name").value || "Student";
+  let mobile = document.getElementById("mobile").value || "N/A";
+  let date = new Date().toLocaleString();
+
+  let receiptContent = 
+`DSC DIDI STUDY CENTER
+----------------------------------
+PAYMENT RECEIPT
+
+Name: ${name}
+Mobile: ${mobile}
+Amount Paid: ₹1000
+Course: Spoken English (6 Months)
+
+Date: ${date}
+
+Status: SUCCESSFUL
+
+Thank you for your admission!
+`;
+
+  let blob = new Blob([receiptContent], { type: "text/plain" });
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "DSC_Receipt.txt";
+  link.click();
 }
+
 </script>
  
 <meta name="google-site-verification" content="lUYz4uUUWaUgfKKaVTt1exTq4KI-G4Qog3NrMF3gPT4" />
